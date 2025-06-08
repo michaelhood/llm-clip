@@ -1,6 +1,5 @@
 import llm
 from PIL import Image
-from sentence_transformers import SentenceTransformer
 import io
 
 
@@ -20,6 +19,7 @@ class ClipEmbeddingModel(llm.EmbeddingModel):
     def embed_batch(self, items):
         # Embeds a mix of text strings and binary images
         if self._model is None:
+            from sentence_transformers import SentenceTransformer
             self._model = SentenceTransformer("clip-ViT-B-32")
 
         to_embed = []
